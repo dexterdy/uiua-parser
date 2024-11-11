@@ -24,7 +24,7 @@ StringB ← Parse "aaabc"
 Any StringA
 Char @a StringA
 Char @b Char @a Char @a StringA
-OneOf [@a @b] StringA
+OneOf "ab" StringA
 Sequence!Char "aaa" StringB
 ⍣(Char @c|) Char @b Many!(Char @a) StringA
 ⍣(Char @c|) Char @b Many!(Char @a) StringB
