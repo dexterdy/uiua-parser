@@ -2,14 +2,15 @@
 
 ┌─╴Parse ~ Any Char Either‼ Ignore! Many! Map‼ OneOf Sequence! Until‼
   ~{Rest Tokens ← {}}
+
   SaveTokens    ← ⍜Tokens(⋅{}) ⟜Tokens # saves tokens and initializes a new empty token array
   CollectTokens ← ⍜Tokens(⍣(⊂/⍚⊂|∘))   # collects token array and prepends it to saved tokens
+  NewToken      ← ⍜Rest(↘1) ⍜Tokens(⊂⊙(□¤)):
+  Next          ← ⊙(.⊢Rest.)
 
-  NewToken    ← ⍜Rest(↘1) ⍜Tokens(⊂⊙(□¤)):
-  Next        ← ⊙(.⊢Rest.)
   Any         ← NewToken ⊢Rest.
   Char        ← NewToken ⍤$"Expected: _. Got: _."◠= Next
-  OneOf       ← NewToken ⍤$"Expected on of: _. Got: _."◠∈ Next
+  OneOf       ← NewToken ⍤$"Expected one of: _. Got: _."◠∈ Next
   Sequence!   ← CollectTokens ∧(^0) ⊙SaveTokens
   ManyInner!  ← |1 ⍣(ManyInner!(^0)^0|)
   Many!       ← CollectTokens ManyInner!^0 SaveTokens
@@ -31,7 +32,7 @@ Sequence!Char "aaa" StringB
 ⍣(Char @c|) Char @b Many!(Char @a) StringA
 ⍣(Char @c|) Char @b Many!(Char @a) StringB
 Map‼⋕(Sequence!Char "21") Parse "21"
-# Many!(Map‼⋕(Char@2))Parse"2222" # bug in the interpreter
+Many!(Map‼⋕(Char@2)) Parse"2222" # bug in the interpreter
 Either‼(Either‼(Char @a|Char @b)|Char @c) Parse "c"
 Ignore!(Char @a) StringA
 Until‼(Char @b|Char @a)StringA
