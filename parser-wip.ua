@@ -11,7 +11,7 @@
   ManyInner!  ← |1 ⍣(ManyInner!(^0)^0|)
   Many!       ← CollectTokens ManyInner!^0 SaveTokens
   Ignore!     ← CollectTokens ⍜tokens({}◌)^0 SaveTokens
-  Map‼       ← ⍜tokens(⊂^0)^1 SaveTokens
+  Map‼        ← ⍜tokens(⊂^0)^1 SaveTokens
   Either‼     ← ⍣(^0|⍣(^1◌:|0⍤:0$"_ | _"◌))
   UntilInner‼ ← |1 ⍣(◌^0.|UntilInner‼(^0|^1)^1)
   Until‼      ← CollectTokens UntilInner‼(^0|^1) SaveTokens
