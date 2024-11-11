@@ -6,10 +6,10 @@
   CollectTokens ← ⍜Tokens(⍣(⊂/⍚⊂|∘))   # collects token array and prepends it to saved tokens
 
   NewToken    ← ⍜Rest(↘1) ⍜Tokens(⊂⊙(□¤)):
-  TakeFirst   ← ⊙(.⊢Rest.)
+  Next        ← ⊙(.⊢Rest.)
   Any         ← NewToken ⊢Rest.
-  Char        ← NewToken ⍤$"Expected: _. Got: _."◠= TakeFirst
-  OneOf       ← NewToken ⍤$"Expected on of: _. Got: _."◠∈ TakeFirst
+  Char        ← NewToken ⍤$"Expected: _. Got: _."◠= Next
+  OneOf       ← NewToken ⍤$"Expected on of: _. Got: _."◠∈ Next
   Sequence!   ← CollectTokens ∧(^0) ⊙SaveTokens
   ManyInner!  ← |1 ⍣(ManyInner!(^0)^0|)
   Many!       ← CollectTokens ManyInner!^0 SaveTokens
