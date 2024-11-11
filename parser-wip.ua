@@ -5,9 +5,11 @@
   SaveTokens    ← ⍜Tokens(⋅{}) ⟜Tokens # saves tokens and initializes a new empty token array
   CollectTokens ← ⍜Tokens(⍣(⊂/⍚⊂|∘))   # collects token array and prepends it to saved tokens
 
-  Any         ← ⍜Rest(↘1) ⍜Tokens(⊂⊙(□¤)): ⊢Rest.
-  Char        ← ⍜Rest(↘1) ⍜Tokens(⊂⊙(□¤)): ⍤$"Expected: _. Got: _."◠= ⊙(.⊢Rest.)
-  OneOf       ← ⍜Rest(↘1) ⍜Tokens(⊂⊙(□¤)): ⍤$"Expected on of: _. Got: _."◠∈ ⊙(.⊢Rest.)
+  NewToken    ← ⍜Rest(↘1) ⍜Tokens(⊂⊙(□¤)):
+  TakeFirst   ← ⊙(.⊢Rest.)
+  Any         ← NewToken ⊢Rest.
+  Char        ← NewToken ⍤$"Expected: _. Got: _."◠= TakeFirst
+  OneOf       ← NewToken ⍤$"Expected on of: _. Got: _."◠∈ TakeFirst
   Sequence!   ← CollectTokens ∧(^0) ⊙SaveTokens
   ManyInner!  ← |1 ⍣(ManyInner!(^0)^0|)
   Many!       ← CollectTokens ManyInner!^0 SaveTokens
