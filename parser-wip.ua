@@ -13,7 +13,7 @@
   Many!       ← CollectTokens ManyInner!^0 SaveTokens
   Ignore!     ← CollectTokens ⍜Tokens({}◌)^0 SaveTokens
   Map‼        ← ⍜Tokens(⊂^0)^1 SaveTokens
-  Either‼     ← ⍣(^0|⍣(^1◌:|0⍤:0$"_ | _"◌))
+  Either‼     ← ⍣(^0|⍣(^1◌:|0⍤:0$"_ | _"◌)) # TODO: write as code macro to enable arbitrary function packs
   UntilInner‼ ← |1 ⍣(◌^0.|UntilInner‼(^0|^1)^1)
   Until‼      ← CollectTokens UntilInner‼(^0|^1) SaveTokens
 └─╴
