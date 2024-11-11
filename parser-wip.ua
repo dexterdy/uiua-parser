@@ -1,17 +1,17 @@
 # Experimental!
 
 ┌─╴Parse ~ Any Char Either‼ Ignore! Many! Map‼ Sequence! Until‼
-  ~{rest tokens ← {}}
-  SaveTokens    ← ⍜tokens(⋅{}) ⟜tokens # saves tokens and initializes a new empty token array
-  CollectTokens ← ⍜tokens(⍣(⊂/⍚⊂|∘))   # collects token array and prepends it to saved tokens
+  ~{Rest Tokens ← {}}
+  SaveTokens    ← ⍜Tokens(⋅{}) ⟜Tokens # saves tokens and initializes a new empty token array
+  CollectTokens ← ⍜Tokens(⍣(⊂/⍚⊂|∘))   # collects token array and prepends it to saved tokens
 
-  Any         ← ⍜rest(↘1) ⍜tokens(⊂⊙(□¤)): ⊢rest.
-  Char        ← ⍜rest(↘1) ⍜tokens(⊂⊙(□¤)): ⍤$"Expected: _. Got: _."◠= ⊙(.⊢rest.)
+  Any         ← ⍜Rest(↘1) ⍜Tokens(⊂⊙(□¤)): ⊢Rest.
+  Char        ← ⍜Rest(↘1) ⍜Tokens(⊂⊙(□¤)): ⍤$"Expected: _. Got: _."◠= ⊙(.⊢Rest.)
   Sequence!   ← CollectTokens ∧(^0) ⊙SaveTokens
   ManyInner!  ← |1 ⍣(ManyInner!(^0)^0|)
   Many!       ← CollectTokens ManyInner!^0 SaveTokens
-  Ignore!     ← CollectTokens ⍜tokens({}◌)^0 SaveTokens
-  Map‼        ← ⍜tokens(⊂^0)^1 SaveTokens
+  Ignore!     ← CollectTokens ⍜Tokens({}◌)^0 SaveTokens
+  Map‼        ← ⍜Tokens(⊂^0)^1 SaveTokens
   Either‼     ← ⍣(^0|⍣(^1◌:|0⍤:0$"_ | _"◌))
   UntilInner‼ ← |1 ⍣(◌^0.|UntilInner‼(^0|^1)^1)
   Until‼      ← CollectTokens UntilInner‼(^0|^1) SaveTokens
